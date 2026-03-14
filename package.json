@@ -1,0 +1,10 @@
+{
+  "name": "llm-visual-guide",
+  "version": "1.0.0",
+  "description": "LLM 아키텍처 비주얼 가이드 — 비개발자도 이해할 수 있는 대규모 언어 모델의 작동 원리",
+  "private": true,
+  "scripts": {
+    "dev": "npx serve public",
+    "build": "echo 'Static site — no build needed'"
+  }
+}
