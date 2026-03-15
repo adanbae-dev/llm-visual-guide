@@ -2466,8 +2466,9 @@
         </div>
         <div style="margin-top:0.6rem;padding:0.6rem;background:rgba(107,203,119,0.08);border-radius:8px;text-align:center;font-size:0.82rem">
           <strong style="color:var(--text)">핵심: 누가 규칙을 알려준 게 아니다.</strong><br>
-          <span style="color:var(--dim)">"틀리면 고치기"를 수조 번 반복한 결과, Q·K 가중치에<br>
-          <strong style="color:#6bcb77">"항구↔배=선박", "과수원↔배=과일"</strong>이라는 패턴이 자연스럽게 새겨진 것.</span>
+          <span style="color:var(--dim)">"틀리면 고치기"를 수백만 번 반복한 결과, Q·K 가중치가<br>
+          <strong style="color:#6bcb77">관련 단어끼리 높은 점수가 나오는 방향</strong>으로 자연스럽게 조정된 것.</span><br>
+          <span style="font-size:0.72rem;color:var(--dim)">* "항구↔배" 쌍이 직접 저장되는 게 아니라, 단어를 고차원 공간에 투영했을 때 관련 단어끼리 가까워지도록 행렬이 학습된다.</span>
         </div>
       </div>
     </div>
