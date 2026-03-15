@@ -729,7 +729,7 @@
     </div>
     <div class="vs-middle">→</div>
     <div class="vs-card reveal" style="border-color:#a5a0ff33;">
-      <div class="vs-badge" style="background:#a5a0ff33;color:#a5a0ff;">딥러닝 (LLM)</div>
+      <div class="vs-badge" style="background:#a5a0ff33;color:#a5a0ff;">딥러닝 (DL)</div>
       <div style="font-size:3rem;margin:1rem 0">🧠</div>
       <h3>특징까지 스스로 학습</h3>
       <p style="color:var(--dim);font-size:0.9rem;margin-top:0.5rem">
@@ -857,7 +857,7 @@
         <div style="font-size:0.75rem;color:var(--dim)">비공개 (매우 큰 규모)</div>
       </div>
     </div>
-    <p style="color:var(--dim);font-size:0.75rem;text-align:center;margin-top:0.5rem">* 회사마다 크기와 설계 방식이 다르지만, "소금 양 조절" 원리는 동일하다</p>
+    <p style="color:var(--dim);font-size:0.75rem;text-align:center;margin-top:0.5rem">* GPT-4는 MoE(전문가 혼합) 구조로 추정되어, 전체 파라미터(~1.76조)와 실제 사용 파라미터(~280B)가 다를 수 있다. 회사마다 크기와 설계 방식이 다르지만, "소금 양 조절" 원리는 동일하다</p>
   </div>
 
   <!-- 파라미터 규모 체감: "1mm = 1개" 거리 비유 -->
@@ -1075,14 +1075,14 @@
 
     const layerColors = ['#6c63ff','#00d2ff','#ffd93d','#ff922b','#e599f7','#ff6b6b','#6bcb77','#a5a0ff','#00d2ff','#ffd93d'];
     const comments = [
-      '1층: 단순한 패턴(밝다/어둡다)만 감지',
-      '2층: 패턴의 조합("밝은 + 둥근 = 공?") 인식 시작',
-      '3층: 추상적 개념("동물", "감정") 형성',
-      '4층: 문맥과 뉘앙스를 이해하기 시작',
-      '5층: 복잡한 추론, 비유, 유머 이해 가능',
-      '6층: 여러 개념의 관계를 동시에 추적',
-      '7층: 고수준 추상화 — "이 문장의 의도"를 파악',
-      '8층: GPT-2급 (12층). 이 정도면 꽤 자연스러운 문장 생성',
+      '1층: 단순한 패턴만 감지 — 실제 LLM과는 완전히 다른 구조',
+      '2층: 패턴의 조합을 인식하기 시작',
+      '3층: 더 복잡한 조합이 가능해짐',
+      '4층: 표현력이 빠르게 증가',
+      '5층: 이 정도면 간단한 분류 문제 해결 가능',
+      '6층: 여러 특징을 동시에 추적',
+      '7층: 고수준 추상화 시작',
+      '8층: 이 시각화의 한계. 실제 GPT-2는 12개 트랜스포머 블록(구조가 완전히 다름)',
     ];
 
     let hiddenLayers = 2;
@@ -1347,7 +1347,7 @@
 
       <!-- 타임라인: 모델별 데이터/비용 성장 -->
       <div style="margin-top:1.5rem;max-width:650px;margin-left:auto;margin-right:auto">
-        <div style="font-size:0.78rem;color:var(--dim);text-align:center;margin-bottom:0.8rem;font-weight:700">모델이 커질수록 데이터와 비용이 기하급수적으로 증가</div>
+        <div style="font-size:0.78rem;color:var(--dim);text-align:center;margin-bottom:0.8rem;font-weight:700">모델이 커질수록 데이터와 비용이 급격히 증가</div>
         <!-- 범례 -->
         <div style="display:flex;justify-content:center;gap:1.5rem;margin-bottom:0.5rem;font-size:0.65rem">
           <span><span style="display:inline-block;width:10px;height:10px;background:linear-gradient(180deg,#6c63ff,#a5a0ff);border-radius:2px;vertical-align:middle"></span> 학습 데이터 (토큰)</span>
@@ -1392,7 +1392,7 @@
 
     // 책 데이터
     const bookMilestones = [
-      { tokens: 0.3, label: 'GPT-2 (2019)', books: 2, color: '#6c63ff' },
+      { tokens: 0.04, label: 'GPT-2 (2019)', books: 2, color: '#6c63ff' },
       { tokens: 0.5, label: 'GPT-3 (2020)', books: 4, color: '#a5a0ff' },
       { tokens: 1.4, label: 'LLaMA (2023)', books: 6, color: '#ff922b' },
       { tokens: 5,   label: 'LLaMA 3 (2024)', books: 9, color: '#ffd93d' },
@@ -1410,7 +1410,7 @@
 
     // 성장 바 데이터
     const barData = [
-      { name:'GPT-2', tokens:0.3, cost:0.05, year:'2019' },
+      { name:'GPT-2', tokens:0.04, cost:0.05, year:'2019' },
       { name:'GPT-3', tokens:0.5, cost:4.6, year:'2020' },
       { name:'LLaMA', tokens:1.4, cost:20, year:'2023' },
       { name:'LLaMA 3', tokens:5, cost:60, year:'2024' },
@@ -2275,7 +2275,7 @@
       <div class="difficulty-dot" style="--diff-color:#ffd93d"></div>
     </div>
   </div>
-  <div class="bridge">이전 파트에서: 각 단어는 <strong>고정된 숫자 묶음(좌표)</strong>으로 변환된다고 배웠다. 하지만 같은 단어도 문맥에 따라 의미가 다르다. 이 문제를 어떻게 풀까?</div>
+  <div class="bridge">이전 파트에서: 각 단어는 <strong>숫자 묶음(좌표)</strong>으로 변환된다고 배웠다. 하지만 같은 단어도 문맥에 따라 의미가 다르다. 이 문제를 어떻게 풀까?</div>
   <div class="key-question">"같은 '배'인데 과일, 신체, 선박을 어떻게 구분할까?"</div>
 
   <div class="metaphor-grid reveal" style="grid-template-columns:repeat(3,1fr)">
@@ -3328,7 +3328,7 @@
       </div>
     </div>
     <p style="text-align:center;font-size:0.75rem;color:var(--dim);margin-top:0.5rem">
-      가운데 <strong style="color:#a5a0ff">맛 확인</strong> + <strong style="color:#ff922b">조리</strong>를 <strong style="color:var(--text)">수십~백여 번 반복</strong>하면 깊은 맛이 나는 것처럼, 트랜스포머도 블록을 반복할수록 이해가 깊어진다.<br><span style="font-size:0.65rem;color:var(--dim)">* 반복 횟수는 모델마다 다르다 (GPT-3: 96회, LLaMA 3: 80회, GPT-4: 120회+ 추정 등)</span>
+      가운데 <strong style="color:#a5a0ff">맛 확인</strong> + <strong style="color:#ff922b">조리</strong>를 <strong style="color:var(--text)">수십~백여 번 반복</strong>하면 깊은 맛이 나는 것처럼, 트랜스포머도 블록을 반복할수록 이해가 깊어진다.<br><span style="font-size:0.65rem;color:var(--dim)">* 반복 횟수는 모델마다 다르다 (GPT-3 175B: 96회, LLaMA 3 70B: 80회, GPT-4: 120회+ 추정 등)</span>
     </p>
   </div>
 
@@ -3452,7 +3452,7 @@
       </div>
     </div>
     <p style="text-align:center;font-size:0.68rem;color:var(--dim);margin-top:0.6rem">
-      Attention도 마찬가지 — 모든 토큰이 다른 모든 토큰과 "악수"해야 한다. 인원이 늘면 기하급수적으로 바빠진다!
+      Attention도 마찬가지 — 모든 토큰이 다른 모든 토큰과 "악수"해야 한다. 인원이 늘면 제곱에 비례하여 바빠진다!
     </p>
   </div>
 
@@ -3487,7 +3487,7 @@
   <!-- 악수 비유 (메인 콘텐츠로 간략화) -->
   <div class="reveal" style="max-width:600px;margin:1.5rem auto;padding:1rem;background:var(--card);border-radius:16px;border:1px solid #ff6b6b22">
     <p style="text-align:center;font-size:0.85rem;color:var(--dim)">
-      <strong style="color:#ff6b6b">⚠️ Attention의 대가:</strong> 모든 단어가 다른 모든 단어를 확인하므로, <strong style="color:var(--text)">문장이 길어질수록 기하급수적으로 느려진다.</strong><br>
+      <strong style="color:#ff6b6b">⚠️ Attention의 대가:</strong> 모든 단어가 다른 모든 단어를 확인하므로, <strong style="color:var(--text)">문장이 길어질수록 제곱에 비례하여 느려진다.</strong><br>
       <span style="font-size:0.78rem">교실에서 3명이 악수하면 3번, 30명이면 435번 — Attention도 마찬가지. 이것이 Part 6 "긴 대화가 느린 이유"의 원인.</span>
     </p>
   </div>
@@ -3628,15 +3628,19 @@
   <div class="tower reveal">
     <div class="tower-block tb-input">📝 입력 (각 토큰의 의미 좌표 + 순서 정보)</div>
     <div class="tower-arrow">↓</div>
+    <div class="tower-block tb-norm">⚖️ 크기 정규화 (Layer Norm)</div>
+    <div class="tower-arrow">↓</div>
     <div class="tower-block tb-attn">🔗 <strong>Attention</strong> — "다른 단어들과 무슨 관계인가?"</div>
     <div class="tower-arrow">↓</div>
-    <div class="tower-block tb-norm">⚖️ 안정화 — 원래 정보 + 새 정보를 합치고 크기를 고르게</div>
+    <div class="tower-block tb-norm">➕ 원래 정보 + Attention 결과 합치기 (Residual)</div>
+    <div class="tower-arrow">↓</div>
+    <div class="tower-block tb-norm">⚖️ 크기 정규화 (Layer Norm)</div>
     <div class="tower-arrow">↓</div>
     <div class="tower-block tb-ffn">🧠 <strong>지식 처리기(FFN)</strong> — "이 문맥에 맞는 지식을 꺼내고, 변환해서 적용"</div>
     <div class="tower-arrow">↓</div>
-    <div class="tower-block tb-norm">⚖️ 안정화 — 다시 한번 합치기 + 크기 고르게</div>
+    <div class="tower-block tb-norm">➕ 원래 정보 + FFN 결과 합치기 (Residual)</div>
     <div class="tower-arrow">↓</div>
-    <div class="tower-block tb-repeat">🔁 이 블록을 수십~백여 번 반복 (GPT-3: 96회 · GPT-4: 120회+ (추정, 비공개))</div>
+    <div class="tower-block tb-repeat">🔁 이 블록을 수십~백여 번 반복 (GPT-3 175B: 96회 · LLaMA 3 70B: 80회 · GPT-4: 120회+ (추정, 비공개))</div>
     <div class="tower-arrow">↓</div>
     <div class="tower-block tb-output">📤 다음에 올 단어의 확률 계산</div>
   </div>
@@ -3862,173 +3866,6 @@
       </p>
     </div>
   </div>
-
-  <!-- FFN 상세 심화는 Part 5에 배치 — 여기서는 제거됨 -->
-  <details style="display:none"><summary></summary><div>
-      <p style="font-size:0.9rem;color:var(--dim);text-align:center;margin-bottom:1.5rem">
-        FFN은 이름 그대로 <strong style="color:var(--text)">"앞으로만 전달하는 신경망"</strong>이다.<br>
-        Attention처럼 단어끼리 서로 보는 게 아니라, <strong style="color:var(--text)">각 토큰을 독립적으로 처리</strong>한다.
-      </p>
-
-      <!-- 핵심 구조 -->
-      <div style="max-width:600px;margin:0 auto 1.5rem">
-        <h4 style="text-align:center;color:#ff922b;font-size:0.95rem;margin-bottom:1rem">FFN의 내부 = 단 2개의 행렬 곱셈</h4>
-        <div style="display:flex;flex-direction:column;gap:0.5rem;align-items:center">
-          <div style="padding:0.6rem 2rem;background:#ffd93d22;border-radius:20px;color:#ffd93d;font-weight:700;font-size:0.85rem">
-            입력: 토큰 1개의 좌표 (예: 4096개 숫자)
-          </div>
-          <div style="color:var(--dim)">↓</div>
-          <div style="padding:1rem 1.5rem;background:#ff922b11;border:2px solid #ff922b33;border-radius:14px;width:85%;text-align:center">
-            <div style="font-weight:700;color:#ff922b;margin-bottom:0.5rem">1단계: 확장 (Up Projection)</div>
-            <div style="font-size:0.82rem;color:var(--dim)">
-              4096차원 → <strong style="color:var(--text)">16384차원</strong>으로 확장<br>
-              <span style="font-size:0.75rem">좁은 복도에서 넓은 창고로 들어가는 것</span>
-            </div>
-            <div style="margin-top:0.5rem;padding:0.4rem 0.8rem;background:var(--card);border-radius:8px;font-family:monospace;font-size:0.72rem;color:var(--dim)">
-              h = <span style="color:#ff922b">W₁</span> × x + b₁ &nbsp;&nbsp;<span style="color:var(--dim);font-size:0.65rem">← 행렬(4096×16384) × 입력벡터</span>
-            </div>
-          </div>
-          <div style="color:var(--dim)">↓</div>
-          <div style="padding:0.8rem 1.5rem;background:#ffd93d11;border:2px solid #ffd93d33;border-radius:14px;width:75%;text-align:center">
-            <div style="font-weight:700;color:#ffd93d;margin-bottom:0.3rem">활성화 함수 — "관련 없는 칸은 꺼라!"</div>
-            <div style="font-size:0.78rem;color:var(--dim)">
-              16384개 값 중 <strong style="color:var(--text)">관련 없는 것을 0으로</strong> 만든다
-            </div>
-            <div style="margin-top:0.4rem;display:flex;justify-content:center;gap:0.5rem;font-size:0.68rem">
-              <span style="padding:0.2rem 0.5rem;background:var(--card);border-radius:6px;color:var(--dim);border:1px solid #2a2a4a">ReLU <span style="color:#555">초기</span></span>
-              <span style="padding:0.2rem 0.5rem;background:var(--card);border-radius:6px;color:var(--dim);border:1px solid #2a2a4a">GeLU <span style="color:#555">GPT-2/3</span></span>
-              <span style="padding:0.2rem 0.5rem;background:#6bcb7711;border-radius:6px;color:#6bcb77;border:1px solid #6bcb7733;font-weight:700">SwiGLU <span style="color:#6bcb77">최신 LLM</span></span>
-            </div>
-          </div>
-          <div style="color:var(--dim)">↓</div>
-          <div style="padding:1rem 1.5rem;background:#6bcb7711;border:2px solid #6bcb7733;border-radius:14px;width:85%;text-align:center">
-            <div style="font-weight:700;color:#6bcb77;margin-bottom:0.5rem">2단계: 축소 (Down Projection)</div>
-            <div style="font-size:0.82rem;color:var(--dim)">
-              16384차원 → 다시 <strong style="color:var(--text)">4096차원</strong>으로 복원<br>
-              <span style="font-size:0.75rem">필요한 지식만 골라서 원래 크기로 돌아오기</span>
-            </div>
-            <div style="margin-top:0.5rem;padding:0.4rem 0.8rem;background:var(--card);border-radius:8px;font-family:monospace;font-size:0.72rem;color:var(--dim)">
-              output = <span style="color:#6bcb77">W₂</span> × h + b₂ &nbsp;&nbsp;<span style="color:var(--dim);font-size:0.65rem">← 행렬(16384×4096) × 활성화 결과</span>
-            </div>
-          </div>
-          <div style="color:var(--dim)">↓</div>
-          <div style="padding:0.6rem 2rem;background:#a5a0ff22;border-radius:20px;color:#a5a0ff;font-weight:700;font-size:0.85rem">
-            출력: 지식이 적용된 새 좌표 (4096개 숫자)
-          </div>
-        </div>
-      </div>
-
-      <!-- 수식 한 줄 요약 -->
-      <div style="max-width:600px;margin:0 auto 1.5rem;padding:1rem;background:var(--card);border-radius:12px;border:1px solid #2a2a4a;text-align:center">
-        <p style="font-size:0.78rem;color:var(--dim);margin-bottom:0.5rem">수식으로 쓰면 단 한 줄:</p>
-        <div style="font-family:monospace;font-size:0.95rem;color:var(--text);padding:0.5rem;background:var(--bg);border-radius:8px">
-          FFN(x) = <span style="color:#6bcb77">W₂</span> · σ(<span style="color:#ff922b">W₁</span> · x + b₁) + b₂
-        </div>
-        <div style="display:grid;grid-template-columns:auto 1fr;gap:0.3rem 0.8rem;margin-top:0.8rem;font-size:0.72rem;color:var(--dim);text-align:left;max-width:400px;margin-left:auto;margin-right:auto">
-          <span style="color:#ff922b;font-weight:700;font-family:monospace">W₁</span>
-          <span>확장 행렬 — (4096 → 16384). 파라미터 수: <strong style="color:var(--text)">약 6700만 개</strong></span>
-          <span style="color:#ffd93d;font-weight:700;font-family:monospace">σ</span>
-          <span>활성화 함수 — 관련 없는 뉴런을 0으로 끔 (SwiGLU 등)</span>
-          <span style="color:#6bcb77;font-weight:700;font-family:monospace">W₂</span>
-          <span>축소 행렬 — (16384 → 4096). 파라미터 수: <strong style="color:var(--text)">약 6700만 개</strong></span>
-          <span style="color:var(--dim);font-family:monospace">b₁, b₂</span>
-          <span>편향(bias) — 최신 모델은 생략하는 경우도 많음</span>
-        </div>
-        <p style="font-size:0.68rem;color:var(--dim);margin-top:0.8rem">
-          블록 1개의 FFN에만 <strong style="color:var(--text)">약 1.3억 개의 파라미터</strong>. 이것이 96블록이면 약 <strong style="color:#ff922b">125억 개</strong> — FFN만으로!<br>
-          이것이 "전체 파라미터의 ⅔가 FFN"인 이유.
-        </p>
-      </div>
-
-      <!-- Attention과의 핵심 차이 -->
-      <div style="max-width:600px;margin:0 auto 1.5rem;padding:1rem;background:var(--card);border-radius:12px;border:1px solid #a5a0ff22">
-        <h4 style="text-align:center;color:#a5a0ff;font-size:0.9rem;margin-bottom:0.8rem">Attention vs FFN — 구조적 차이</h4>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;font-size:0.78rem">
-          <div style="padding:0.8rem;background:#a5a0ff08;border-radius:10px;border:1px solid #a5a0ff22;text-align:center">
-            <div style="font-weight:700;color:#a5a0ff;margin-bottom:0.5rem">Attention</div>
-            <div style="color:var(--dim);line-height:1.6">
-              토큰 <strong style="color:var(--text)">사이</strong>를 연결<br>
-              "오늘"이 "날씨"를 본다<br><br>
-              입력에 따라 <strong style="color:var(--text)">동적으로</strong> 변함<br>
-              (다른 문장이면 다른 연결)<br><br>
-              <span style="font-size:0.72rem;color:#a5a0ff">= 토큰 간 정보 교환</span>
-            </div>
-          </div>
-          <div style="padding:0.8rem;background:#ff922b08;border-radius:10px;border:1px solid #ff922b22;text-align:center">
-            <div style="font-weight:700;color:#ff922b;margin-bottom:0.5rem">FFN</div>
-            <div style="color:var(--dim);line-height:1.6">
-              토큰 <strong style="color:var(--text)">각각을 독립</strong> 처리<br>
-              "오늘"은 혼자 FFN을 통과<br><br>
-              가중치가 <strong style="color:var(--text)">고정</strong>됨<br>
-              (항상 같은 W₁, W₂ 사용)<br><br>
-              <span style="font-size:0.72rem;color:#ff922b">= 학습된 지식을 적용</span>
-            </div>
-          </div>
-        </div>
-        <p style="text-align:center;font-size:0.72rem;color:var(--dim);margin-top:0.8rem">
-          <strong style="color:var(--accent4)">비유:</strong> Attention = 회의 (다른 사람 의견 듣기), FFN = 혼자 책상에서 아는 것 정리하기.<br>
-          이 둘을 교대하면서 반복하는 것이 트랜스포머 블록.
-        </p>
-      </div>
-
-      <!-- 뉴런 활성화 시각화 -->
-      <div style="max-width:550px;margin:0 auto;padding:1.2rem;background:var(--card);border-radius:16px;border:1px solid #ff922b33">
-        <h4 style="text-align:center;color:#ff922b;font-size:0.85rem;margin-bottom:0.3rem">FFN 뉴런 활성화 — "대부분 꺼진다"</h4>
-        <p style="text-align:center;font-size:0.62rem;color:var(--dim);margin-bottom:0.8rem">"오늘 날씨가 정말" 입력 시 16,384개 뉴런 중 활성화되는 패턴 (모식도)</p>
-        <div style="display:grid;grid-template-columns:repeat(16,1fr);gap:2px;max-width:400px;margin:0 auto">
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-          <div style="height:14px;background:#ff922b;border-radius:2px;box-shadow:0 0 4px #ff922b88"></div>
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-          <div style="height:14px;background:#6bcb77;border-radius:2px;box-shadow:0 0 4px #6bcb7788"></div>
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-          <div style="height:14px;background:#ffd93d;border-radius:2px;box-shadow:0 0 4px #ffd93d88"></div>
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-          <div style="height:14px;background:#ff922b;border-radius:2px;box-shadow:0 0 4px #ff922b88"></div>
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-          <div style="height:14px;background:#6bcb77;border-radius:2px;box-shadow:0 0 4px #6bcb7788"></div>
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-          <div style="height:14px;background:#333;border-radius:2px"></div>
-        </div>
-        <div style="display:flex;justify-content:center;gap:1rem;margin-top:0.6rem;font-size:0.62rem">
-          <span><span style="display:inline-block;width:10px;height:10px;background:#333;border-radius:2px;vertical-align:middle"></span> 비활성 (0)</span>
-          <span><span style="display:inline-block;width:10px;height:10px;background:#ff922b;border-radius:2px;vertical-align:middle;box-shadow:0 0 4px #ff922b88"></span> 활성 (날씨/감정 관련)</span>
-        </div>
-        <p style="text-align:center;font-size:0.68rem;color:var(--dim);margin-top:0.5rem">
-          16,384개 중 <strong style="color:#ff922b">5~15%만 활성화</strong>. 나머지 85%+는 0이다.<br>
-          이 "희소 활성화"가 MoE(Part 5)의 원리이기도 하다 — 어차피 대부분 꺼지니, 처음부터 일부만 계산하자!
-        </p>
-      </div>
-
-      <!-- 연구 근거 -->
-      <div style="max-width:600px;margin:1rem auto 0;padding:0.8rem 1rem;background:rgba(255,255,255,0.02);border-radius:10px;border:1px solid #2a2a4a">
-        <p style="font-size:0.72rem;color:var(--dim);text-align:center">
-          <strong style="color:var(--accent4)">관련 연구:</strong>
-          Geva et al. (2021) — FFN의 각 뉴런이 특정 지식 패턴(예: "수도 이름")을 저장한다는 것을 발견.<br>
-          Dai et al. (2022) — FFN 뉴런을 편집하면 모델이 아는 "사실"을 바꿀 수 있음을 실증.
-        </p>
-      </div>
-    </div>
-  </details>
 
   <details class="deep-dive reveal">
     <summary>심화: 깊이에 따른 이해 수준 — 레이어가 쌓일수록 무엇이 달라지나 <span class="deep-badge">펼쳐보기</span></summary>
@@ -4333,12 +4170,12 @@
       <div style="padding:0.8rem 1rem;background:var(--card);border-radius:10px;border-left:3px solid #ff922b;font-size:0.85rem;color:var(--dim)">
         <strong style="color:#ff922b">② 어휘 사전과 비교</strong><br>
         이 좌표를 학습된 <strong style="color:var(--text)">전체 어휘(약 3~10만 개 토큰)</strong>와 하나하나 비교해서 유사도 점수를 매긴다.<br>
-        <span style="font-size:0.78rem">개발자 비유: 벡터 DB에서 가장 가까운 이웃(nearest neighbor)을 찾는 것과 비슷</span>
+        <span style="font-size:0.78rem">기술적으로는 출력 좌표와 어휘 행렬의 행렬 곱(내적)으로 각 토큰의 점수를 계산</span>
       </div>
       <div style="padding:0.8rem 1rem;background:var(--card);border-radius:10px;border-left:3px solid #6bcb77;font-size:0.85rem;color:var(--dim)">
         <strong style="color:#6bcb77">③ 확률로 변환 (Softmax)</strong><br>
         점수를 "합이 100%가 되는 확률"로 변환한다.<br>
-        <span style="font-size:0.78rem">Softmax = 그냥 <strong style="color:var(--text)">"모든 점수를 비율(%)로 바꿔주는 함수"</strong>. 점수 [3, 1, 0.5] → 확률 [82%, 11%, 7%] 같은 식</span>
+        <span style="font-size:0.78rem">Softmax = 그냥 <strong style="color:var(--text)">"모든 점수를 비율(%)로 바꿔주는 함수"</strong>. 높은 점수일수록 높은 확률을 받는다</span>
       </div>
     </div>
     <!-- Softmax 파이 비유 -->
@@ -4555,7 +4392,7 @@
       </div>
       <p style="font-size:0.78rem;text-align:center;color:var(--dim);margin-top:0.8rem">
         LLM이 글을 쓸 때 <strong style="color:var(--text)">한 글자씩 타이핑하듯 나오는 이유</strong>가 바로 이것!<br>
-        매번 전체 문장을 다시 트랜스포머에 통과시켜 다음 한 토큰을 예측한다.
+        다음 한 토큰을 예측한다. (실제로는 KV Cache를 사용해 이전 결과를 재활용하므로, 매번 전체를 다시 계산하지는 않는다.)
       </p>
 
       <!-- 개발자에게 의미하는 것 -->
@@ -4671,7 +4508,7 @@
             <strong style="color:var(--text)">비용:</strong> GPU 수천~만 개, 수개월
           </div>
           <div style="padding:0.3rem 0.5rem;background:var(--bg);border-radius:6px;border-left:2px solid #a5a0ff">
-            <strong style="color:var(--text)">빈도:</strong> 한 번 (배포 전)
+            <strong style="color:var(--text)">빈도:</strong> 여러 단계 (사전훈련 + 지시튜닝 + 정렬)
           </div>
         </div>
         <div style="text-align:center;font-size:0.6rem;color:#a5a0ff;margin-top:0.5rem;font-weight:700">
@@ -4953,10 +4790,11 @@
       <p style="font-size:0.9rem;color:var(--dim);text-align:center;margin-bottom:1.5rem">
         FFN(Feed-Forward Network)은 지식을 <strong style="color:var(--text)">저장하면서 동시에 변환하는 처리기</strong>다.<br>
         연구에 따르면 FFN의 각 층은 <strong style="color:var(--text)">"key-value 메모리"</strong>처럼 작동한다. (Geva et al., 2021)<br>
-        내부는 의외로 단순한 2단계 구조다.
+        내부는 의외로 단순한 2~3개의 행렬 곱셈 구조다.
       </p>
 
       <div style="max-width:600px;margin:0 auto 1.5rem">
+        <div style="font-size:0.72rem;color:var(--dim);margin-top:0.3rem">* 최신 LLM이 사용하는 SwiGLU 활성화는 gate·up·down 3개의 행렬을 사용한다</div>
         <div style="display:flex;flex-direction:column;gap:0.5rem;align-items:center">
           <div style="padding:0.6rem 2rem;background:#ffd93d22;border-radius:20px;color:#ffd93d;font-weight:700;font-size:0.85rem">
             입력: Attention 결과 (문맥 반영된 좌표)
@@ -5801,7 +5639,7 @@
           </div>
         </div>
         <p style="text-align:center;font-size:0.68rem;color:var(--dim);margin-top:0.8rem">
-          1권 ≈ 6~8만 토큰. 컨텍스트가 크면 긴 문서 분석에 유리하지만, <strong style="color:var(--text)">비용과 속도는 O(n²)로 증가</strong>한다.
+          1권 ≈ 6~8만 토큰. 컨텍스트가 크면 긴 문서 분석에 유리하지만, <strong style="color:var(--text)">Attention 계산량은 O(n²)로 증가하여 느려진다</strong>. (API 요금은 토큰 수에 비례하는 선형 과금)
         </p>
       </div>
 
@@ -6342,7 +6180,7 @@
       </div>
       <p style="text-align:center;font-size:0.68rem;color:var(--dim);margin-top:0.6rem">
         이것이 <strong style="color:var(--text)">"대화가 길어지면 앞 내용을 까먹는"</strong> 진짜 이유.<br>
-        캐시 메모리가 가득 차면 오래된 토큰의 K, V를 버릴 수밖에 없다.
+        컨텍스트 윈도우(입력 가능한 최대 토큰 수)를 초과하면 오래된 대화가 잘려나간다. KV Cache의 메모리 한계도 이를 제약하는 요인이다.
       </p>
     </div>
   </div>
@@ -6627,7 +6465,7 @@
           <div style="position:absolute;left:-2px;width:12px;height:12px;background:#6bcb77;border-radius:50%;border:2px solid var(--card)"></div>
           <div style="margin-left:20px;font-size:0.72rem">
             <span style="color:#6bcb77;font-weight:700">GPT-4o</span>
-            <span style="color:var(--dim)"> — 2024.06까지</span>
+            <span style="color:var(--dim)"> — 2023.10까지</span>
           </div>
         </div>
         <!-- Gemini -->
@@ -7465,7 +7303,7 @@
       </div>
     </div>
     <p style="text-align:center;font-size:0.68rem;color:var(--dim);margin-top:0.8rem">
-      이 과정이 <strong style="color:var(--text)">글자 하나마다</strong> 반복된다. 100글자 답변 = 이 라인을 100번 돌린 것!
+      이 과정이 <strong style="color:var(--text)">토큰 하나마다</strong> 반복된다. 토큰 100개 답변 = 이 라인을 100번 돌린 것!
     </p>
   </div>
 
