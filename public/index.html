@@ -644,6 +644,7 @@
       <a class="nav-link" onclick="scrollTo_('part5')">5. 글쓰기</a>
       <a class="nav-link" onclick="scrollTo_('part6')">6. 기억</a>
       <a class="nav-link" onclick="scrollTo_('part7')">7. 한계</a>
+      <a class="nav-link" onclick="scrollTo_('case-study')">🔮 실전</a>
     </div>
   </div>
   <div class="progress-bar" id="progressBar" style="width:0%"></div>
@@ -7388,6 +7389,446 @@
 
 <div class="divider"></div>
 
+<!-- ═══ 실전 사례: 사주 기반 매물 추천 서비스 ═══ -->
+<div class="section" id="case-study">
+  <div class="section-header">
+    <div class="section-num" style="background:linear-gradient(135deg,#e599f733,#ffd93d33);color:#e599f7;">🔮 CASE STUDY</div>
+    <h2>실전 사례: 사주 분석 기반 매물 추천 서비스</h2>
+    <p>Part 1~7에서 배운 개념이 <strong style="color:var(--accent4)">실제 서비스</strong>에서 어떻게 쓰이는지 따라가 봅시다</p>
+  </div>
+
+  <div class="bridge reveal">
+    <strong>어떤 서비스인가?</strong> — 사용자의 <strong>생년월일시</strong>로 사주(四柱)를 분석하고, 오행·방위 궁합을 계산해서 <strong>나에게 맞는 지역과 매물</strong>을 추천하는 서비스입니다. 일 9만 사용자가 사용하는 부동산 플랫폼에 탑재되어 있습니다.
+  </div>
+
+  <!-- ── 블록 1: 전체 아키텍처 다이어그램 ── -->
+  <div class="reveal" style="margin:2.5rem 0">
+    <h3 style="text-align:center;margin-bottom:1.5rem;font-size:1.2rem">
+      <span style="color:var(--accent4)">전체 아키텍처</span> — 생년월일에서 매물 추천까지
+    </h3>
+    <div style="max-width:900px;margin:0 auto;padding:1.5rem;background:var(--card);border-radius:16px;border:1px solid #2a2a4a;overflow-x:auto">
+      <div style="display:flex;align-items:stretch;justify-content:center;gap:0;flex-wrap:wrap;min-width:750px">
+        <!-- Step 1 -->
+        <div style="text-align:center;flex:1;min-width:85px;max-width:110px;padding:0.8rem 0.3rem">
+          <div style="font-size:1.8rem;margin-bottom:0.4rem">💬</div>
+          <div style="font-weight:700;font-size:0.75rem;margin-bottom:0.3rem">생년월일 입력</div>
+          <div style="font-size:0.6rem;color:var(--dim);line-height:1.4">"84년 7월 25일<br>아침 8시 남자"</div>
+        </div>
+        <div style="display:flex;align-items:center;color:var(--accent1);font-weight:700;font-size:1.2rem;padding:0 0.15rem">→</div>
+        <!-- Step 2 -->
+        <div style="text-align:center;flex:1;min-width:85px;max-width:110px;padding:0.8rem 0.3rem;position:relative">
+          <div style="font-size:1.8rem;margin-bottom:0.4rem">🤖</div>
+          <div style="font-weight:700;font-size:0.75rem;margin-bottom:0.3rem">정보 추출</div>
+          <div style="font-size:0.6rem;color:var(--dim);line-height:1.4">LLM이 자연어에서<br>구조화 데이터 추출</div>
+          <div style="position:absolute;bottom:-0.6rem;left:50%;transform:translateX(-50%);font-size:0.55rem;padding:0.15rem 0.5rem;border-radius:8px;background:#ffd93d22;color:#ffd93d;white-space:nowrap">Part 7</div>
+        </div>
+        <div style="display:flex;align-items:center;color:var(--accent1);font-weight:700;font-size:1.2rem;padding:0 0.15rem">→</div>
+        <!-- Step 3 -->
+        <div style="text-align:center;flex:1;min-width:85px;max-width:110px;padding:0.8rem 0.3rem;position:relative">
+          <div style="font-size:1.8rem;margin-bottom:0.4rem">🔮</div>
+          <div style="font-weight:700;font-size:0.75rem;margin-bottom:0.3rem">사주 계산</div>
+          <div style="font-size:0.6rem;color:var(--dim);line-height:1.4">四柱 산출 +<br>용신·방위 결정</div>
+          <div style="position:absolute;bottom:-0.6rem;left:50%;transform:translateX(-50%);font-size:0.55rem;padding:0.15rem 0.5rem;border-radius:8px;background:#e599f722;color:#e599f7;white-space:nowrap">알고리즘</div>
+        </div>
+        <div style="display:flex;align-items:center;color:var(--accent1);font-weight:700;font-size:1.2rem;padding:0 0.15rem">→</div>
+        <!-- Step 4 -->
+        <div style="text-align:center;flex:1;min-width:85px;max-width:110px;padding:0.8rem 0.3rem;position:relative">
+          <div style="font-size:1.8rem;margin-bottom:0.4rem">🧭</div>
+          <div style="font-weight:700;font-size:0.75rem;margin-bottom:0.3rem">지역 궁합</div>
+          <div style="font-size:0.6rem;color:var(--dim);line-height:1.4">방위·오행으로<br>길한 지역 추천</div>
+          <div style="position:absolute;bottom:-0.6rem;left:50%;transform:translateX(-50%);font-size:0.55rem;padding:0.15rem 0.5rem;border-radius:8px;background:#6bcb7722;color:#6bcb77;white-space:nowrap">Part 2</div>
+        </div>
+        <div style="display:flex;align-items:center;color:var(--accent1);font-weight:700;font-size:1.2rem;padding:0 0.15rem">→</div>
+        <!-- Step 5 -->
+        <div style="text-align:center;flex:1;min-width:85px;max-width:110px;padding:0.8rem 0.3rem;position:relative">
+          <div style="font-size:1.8rem;margin-bottom:0.4rem">🗄️</div>
+          <div style="font-weight:700;font-size:0.75rem;margin-bottom:0.3rem">매물 검색</div>
+          <div style="font-size:0.6rem;color:var(--dim);line-height:1.4">추천 지역 기반<br>벡터 DB 검색</div>
+          <div style="position:absolute;bottom:-0.6rem;left:50%;transform:translateX(-50%);font-size:0.55rem;padding:0.15rem 0.5rem;border-radius:8px;background:#00d2ff22;color:#00d2ff;white-space:nowrap">Part 6</div>
+        </div>
+        <div style="display:flex;align-items:center;color:var(--accent1);font-weight:700;font-size:1.2rem;padding:0 0.15rem">→</div>
+        <!-- Step 6 -->
+        <div style="text-align:center;flex:1;min-width:85px;max-width:110px;padding:0.8rem 0.3rem;position:relative">
+          <div style="font-size:1.8rem;margin-bottom:0.4rem">📊</div>
+          <div style="font-weight:700;font-size:0.75rem;margin-bottom:0.3rem">궁합 스코어링</div>
+          <div style="font-size:0.6rem;color:var(--dim);line-height:1.4">향·층수·건축년도<br>오행 궁합 점수</div>
+          <div style="position:absolute;bottom:-0.6rem;left:50%;transform:translateX(-50%);font-size:0.55rem;padding:0.15rem 0.5rem;border-radius:8px;background:#ff922b22;color:#ff922b;white-space:nowrap">Part 2</div>
+        </div>
+        <div style="display:flex;align-items:center;color:var(--accent1);font-weight:700;font-size:1.2rem;padding:0 0.15rem">→</div>
+        <!-- Step 7 -->
+        <div style="text-align:center;flex:1;min-width:85px;max-width:110px;padding:0.8rem 0.3rem;position:relative">
+          <div style="font-size:1.8rem;margin-bottom:0.4rem">✨</div>
+          <div style="font-weight:700;font-size:0.75rem;margin-bottom:0.3rem">추천 응답</div>
+          <div style="font-size:0.6rem;color:var(--dim);line-height:1.4">Claude가 분석 결과<br>자연어로 설명</div>
+          <div style="position:absolute;bottom:-0.6rem;left:50%;transform:translateX(-50%);font-size:0.55rem;padding:0.15rem 0.5rem;border-radius:8px;background:#ff6b6b22;color:#ff6b6b;white-space:nowrap">Part 5</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 블록 2: 사주 계산 & 용신 결정 ── -->
+  <div class="reveal" style="margin:3rem 0">
+    <h3 style="text-align:center;margin-bottom:0.3rem;font-size:1.1rem">
+      <span style="color:var(--accent2)">사주 계산 & 임베딩</span> — 생년월일을 숫자로
+      <span style="font-size:0.7rem;padding:0.15rem 0.5rem;border-radius:8px;background:#00d2ff22;color:#00d2ff;margin-left:0.5rem;vertical-align:middle">Part 2 적용</span>
+    </h3>
+    <p style="text-align:center;color:var(--dim);font-size:0.85rem;margin-bottom:1.5rem">생년월일이 오행·방위·점수로 변환되는 과정 — "의미를 숫자로 바꾸는" 임베딩의 실전 버전</p>
+
+    <div style="max-width:750px;margin:0 auto;display:grid;gap:1rem">
+      <!-- 원본 입력 -->
+      <div style="background:var(--card);border-radius:14px;padding:1.2rem 1.5rem;border:1px solid #2a2a4a">
+        <div style="font-size:0.75rem;color:var(--dim);margin-bottom:0.5rem">① 사용자 입력 (자연어)</div>
+        <div style="font-size:1.1rem;font-weight:700;color:var(--accent4)">"84년 7월 25일 아침 8시쯤 남자, 회사는 구로디지털단지"</div>
+      </div>
+
+      <div style="text-align:center;color:var(--accent1);font-size:1.2rem">↓</div>
+
+      <!-- 사주 계산 -->
+      <div style="background:var(--card);border-radius:14px;padding:1.2rem 1.5rem;border:1px solid #e599f733">
+        <div style="font-size:0.75rem;color:#e599f7;margin-bottom:0.6rem;font-weight:700">② 四柱 산출 (결정론적 코드 — LLM 아님)</div>
+        <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0.5rem;margin-bottom:0.6rem">
+          <div style="text-align:center;padding:0.5rem;background:#e599f711;border-radius:8px;border:1px solid #e599f733">
+            <div style="font-size:0.6rem;color:var(--dim)">년주</div>
+            <div style="font-weight:700;font-size:0.85rem;color:#e599f7">갑자</div>
+            <div style="font-size:0.6rem;color:var(--dim)">甲子</div>
+          </div>
+          <div style="text-align:center;padding:0.5rem;background:#e599f711;border-radius:8px;border:1px solid #e599f733">
+            <div style="font-size:0.6rem;color:var(--dim)">월주</div>
+            <div style="font-weight:700;font-size:0.85rem;color:#e599f7">신미</div>
+            <div style="font-size:0.6rem;color:var(--dim)">辛未</div>
+          </div>
+          <div style="text-align:center;padding:0.5rem;background:#ffd93d11;border-radius:8px;border:1px solid #ffd93d33">
+            <div style="font-size:0.6rem;color:var(--dim)">일주</div>
+            <div style="font-weight:700;font-size:0.85rem;color:#ffd93d">경신</div>
+            <div style="font-size:0.55rem;color:var(--accent4)">← 일간(庚金) = 나</div>
+          </div>
+          <div style="text-align:center;padding:0.5rem;background:#e599f711;border-radius:8px;border:1px solid #e599f733">
+            <div style="font-size:0.6rem;color:var(--dim)">시주</div>
+            <div style="font-weight:700;font-size:0.85rem;color:#e599f7">경진</div>
+            <div style="font-size:0.6rem;color:var(--dim)">庚辰</div>
+          </div>
+        </div>
+        <div style="font-size:0.72rem;color:var(--dim)">오행 분포: 목(木)1 · <span style="color:#ff6b6b">화(火)0</span> · 토(土)2 · <strong style="color:var(--text)">금(金)4</strong> · 수(水)1 — 金이 극도로 강하고 火가 완전 부재</div>
+      </div>
+
+      <div style="text-align:center;color:var(--accent1);font-size:1.2rem">↓</div>
+
+      <!-- 용신 결정 -->
+      <div style="background:var(--card);border-radius:14px;padding:1.2rem 1.5rem;border:1px solid #ff922b33">
+        <div style="font-size:0.75rem;color:#ff922b;margin-bottom:0.6rem;font-weight:700">③ 용신(用神) 결정 — 내게 가장 필요한 기운</div>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:0.6rem">
+          <div style="padding:0.6rem;background:#ff6b6b11;border-radius:8px;border:1px solid #ff6b6b33;text-align:center">
+            <div style="font-size:0.65rem;color:var(--dim)">용신 (필요한 기운)</div>
+            <div style="font-weight:900;font-size:1rem;color:#ff6b6b">화(火)</div>
+          </div>
+          <div style="padding:0.6rem;background:#6bcb7711;border-radius:8px;border:1px solid #6bcb7733;text-align:center">
+            <div style="font-size:0.65rem;color:var(--dim)">희신 (돕는 기운)</div>
+            <div style="font-weight:900;font-size:1rem;color:#6bcb77">목(木)</div>
+          </div>
+          <div style="padding:0.6rem;background:#00d2ff11;border-radius:8px;border:1px solid #00d2ff33;text-align:center">
+            <div style="font-size:0.65rem;color:var(--dim)">기신 (피할 기운)</div>
+            <div style="font-weight:900;font-size:1rem;color:#00d2ff">수(水)</div>
+          </div>
+        </div>
+        <div style="margin-top:0.6rem;font-size:0.7rem;color:var(--dim)">조후용신표: 일간(10) × 월지(12) = <strong style="color:var(--text)">120가지 조합의 확정 테이블</strong> — LLM이 아닌 코드로 100% 결정</div>
+        <div style="margin-top:0.3rem;font-size:0.65rem;color:var(--dim)">궁통보감: "庚金 未月, 先丁後甲" — 늦여름의 원석은 제련의 불(丁火)이 가장 먼저 필요</div>
+      </div>
+
+      <div style="text-align:center;color:var(--accent1);font-size:1.2rem">↓</div>
+
+      <!-- 방위 매핑 -->
+      <div style="background:var(--card);border-radius:14px;padding:1.2rem 1.5rem;border:1px solid #6c63ff33">
+        <div style="font-size:0.75rem;color:var(--accent1);margin-bottom:0.6rem;font-weight:700">④ 오행 → 방위 → 지역 매핑 (후천팔괘)</div>
+        <div style="display:grid;gap:0.5rem;font-size:0.78rem">
+          <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap">
+            <span style="font-size:0.6rem;padding:0.15rem 0.4rem;border-radius:6px;background:#ff6b6b22;color:#ff6b6b">주길방</span>
+            <span style="padding:0.3rem 0.7rem;border-radius:8px;background:#ff6b6b22;border:1px solid #ff6b6b;color:#ff6b6b;font-weight:700">용신 화(火)</span>
+            <span style="color:var(--dim)">→</span>
+            <span style="padding:0.3rem 0.7rem;border-radius:8px;background:#6c63ff22;color:#a5a0ff;font-weight:700">남(離)</span>
+            <span style="color:var(--dim)">→</span>
+            <span style="padding:0.3rem 0.7rem;border-radius:8px;background:#ffd93d22;color:#ffd93d;font-weight:700">금천구 88.5점</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:0.5rem;flex-wrap:wrap">
+            <span style="font-size:0.6rem;padding:0.15rem 0.4rem;border-radius:6px;background:#6bcb7722;color:#6bcb77">보조길방</span>
+            <span style="padding:0.3rem 0.7rem;border-radius:8px;background:#6bcb7722;border:1px solid #6bcb77;color:#6bcb77;font-weight:700">희신 목(木)</span>
+            <span style="color:var(--dim)">→</span>
+            <span style="padding:0.3rem 0.7rem;border-radius:8px;background:#6c63ff22;color:#a5a0ff;font-weight:700">남동(巽)·동(震)</span>
+            <span style="color:var(--dim)">→</span>
+            <span style="padding:0.3rem 0.7rem;border-radius:8px;background:#ffd93d22;color:#ffd93d;font-weight:700">관악구·동작구 76.6점</span>
+          </div>
+        </div>
+        <div style="margin-top:0.5rem;font-size:0.68rem;color:var(--dim)">Part 2에서 배운 "의미 → 숫자" 변환의 실전 버전. 오행이라는 "의미"가 방위·지역·점수라는 "좌표"로 변환됩니다</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 블록 3: RAG — 사주 추천 지역에서 매물 검색 ── -->
+  <div class="reveal" style="margin:3rem 0">
+    <h3 style="text-align:center;margin-bottom:0.3rem;font-size:1.1rem">
+      <span style="color:var(--accent5)">RAG</span> — 사주가 추천한 지역에서 실제 매물 찾기
+      <span style="font-size:0.7rem;padding:0.15rem 0.5rem;border-radius:8px;background:#6bcb7722;color:#6bcb77;margin-left:0.5rem;vertical-align:middle">Part 6 적용</span>
+    </h3>
+    <p style="text-align:center;color:var(--dim);font-size:0.85rem;margin-bottom:1.5rem">LLM에게 직접 매물을 물어보면 환각이 발생합니다. 검색을 먼저 합니다.</p>
+
+    <div style="max-width:750px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:1.2rem">
+      <!-- 직접 질문 (Bad) -->
+      <div style="background:var(--card);border-radius:14px;padding:1.2rem;border:1px solid #ff6b6b44">
+        <div style="display:flex;align-items:center;gap:0.4rem;margin-bottom:0.8rem">
+          <span style="font-size:1.2rem">❌</span>
+          <span style="font-weight:700;font-size:0.85rem;color:#ff6b6b">LLM에게 직접 질문</span>
+        </div>
+        <div style="font-size:0.78rem;color:var(--dim);line-height:1.7">
+          <div style="margin-bottom:0.3rem">💬 "동쪽 방위 매물 추천해줘"</div>
+          <div style="color:#ff6b6b">🤖 "강동구 ○○아파트 추천합니다" <em>(존재하지 않는 매물!)</em></div>
+        </div>
+        <div style="margin-top:0.6rem;font-size:0.7rem;padding:0.4rem 0.6rem;background:#ff6b6b11;border-radius:8px;color:#ff6b6b">LLM은 실시간 매물 정보를 모른다</div>
+      </div>
+
+      <!-- RAG (Good) -->
+      <div style="background:var(--card);border-radius:14px;padding:1.2rem;border:1px solid #6bcb7744">
+        <div style="display:flex;align-items:center;gap:0.4rem;margin-bottom:0.8rem">
+          <span style="font-size:1.2rem">✅</span>
+          <span style="font-weight:700;font-size:0.85rem;color:#6bcb77">RAG: 검색 후 생성</span>
+        </div>
+        <div style="font-size:0.78rem;color:var(--dim);line-height:1.7">
+          <div>1. 사주 → 길한 지역 리스트 확정</div>
+          <div>2. 해당 지역 매물을 벡터 DB에서 검색</div>
+          <div>3. 매물별 오행 궁합 스코어링</div>
+          <div style="color:#6bcb77">4. Claude가 <strong>실제 매물 기반</strong> 추천</div>
+        </div>
+        <div style="margin-top:0.6rem;font-size:0.7rem;padding:0.4rem 0.6rem;background:#6bcb7711;border-radius:8px;color:#6bcb77">Part 6의 "외부 기억" = 매물 벡터 DB</div>
+      </div>
+    </div>
+
+    <!-- 궁합 스코어링 상세 -->
+    <div style="max-width:750px;margin:1.2rem auto 0;padding:1rem 1.2rem;background:var(--card);border-radius:12px;border:1px solid #2a2a4a">
+      <div style="font-size:0.75rem;color:var(--accent5);font-weight:700;margin-bottom:0.6rem">매물별 궁합 스코어 (100점 만점)</div>
+      <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:0.5rem;font-size:0.72rem">
+        <div style="display:flex;align-items:center;gap:0.4rem">
+          <div style="width:8px;height:8px;border-radius:50%;background:#e599f7;flex-shrink:0"></div>
+          <span><strong style="color:#e599f7">향 궁합 (/40)</strong> — 매물 향(남향 등)의 오행과 용신 궁합</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.4rem">
+          <div style="width:8px;height:8px;border-radius:50%;background:#6c63ff;flex-shrink:0"></div>
+          <span><strong style="color:#a5a0ff">층수 궁합 (/25)</strong> — 하도수(河圖數) 오행 + 고저 보정</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.4rem">
+          <div style="width:8px;height:8px;border-radius:50%;background:#ff922b;flex-shrink:0"></div>
+          <span><strong style="color:#ff922b">건축년도 (/20)</strong> — 천간(天干) 오행 + 건물 나이 보정</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:0.4rem">
+          <div style="width:8px;height:8px;border-radius:50%;background:#ffd93d;flex-shrink:0"></div>
+          <span><strong style="color:#ffd93d">기본점 (+20) / 기신 감점 (-5)</strong></span>
+        </div>
+      </div>
+      <div style="margin-top:0.5rem;font-size:0.65rem;color:var(--dim)">82~100점: 천생연분 · 68~81점: 상생의 기운 · 52~67점: 조화로운 기운 · 38~51점: 무난한 기운 · ~37점: 참고</div>
+    </div>
+  </div>
+
+  <!-- ── 블록 4: 프롬프트 엔지니어링 ── -->
+  <div class="reveal" style="margin:3rem 0">
+    <h3 style="text-align:center;margin-bottom:0.3rem;font-size:1.1rem">
+      <span style="color:var(--accent4)">프롬프트 엔지니어링</span> — 실제 프롬프트 3가지
+      <span style="font-size:0.7rem;padding:0.15rem 0.5rem;border-radius:8px;background:#ffd93d22;color:#ffd93d;margin-left:0.5rem;vertical-align:middle">Part 7 적용</span>
+    </h3>
+    <p style="text-align:center;color:var(--dim);font-size:0.85rem;margin-bottom:1.5rem">서비스에서 실제로 사용 중인 프롬프트 설계 패턴</p>
+
+    <div style="max-width:750px;margin:0 auto;display:grid;gap:1.2rem">
+      <!-- 프롬프트 1: 생년월일 추출 -->
+      <div style="background:var(--card);border-radius:14px;padding:1.2rem 1.5rem;border:1px solid #e599f733">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem;flex-wrap:wrap;gap:0.5rem">
+          <div style="display:flex;align-items:center;gap:0.5rem">
+            <span style="font-size:1.3rem">🔮</span>
+            <span style="font-weight:700;font-size:0.95rem">생년월일 추출 프롬프트</span>
+          </div>
+          <div style="display:flex;gap:0.3rem;flex-wrap:wrap">
+            <span style="font-size:0.6rem;padding:0.15rem 0.5rem;border-radius:6px;background:#e599f722;color:#e599f7">역할 지정</span>
+            <span style="font-size:0.6rem;padding:0.15rem 0.5rem;border-radius:6px;background:#ff6b6b22;color:#ff6b6b">환각 방지</span>
+            <span style="font-size:0.6rem;padding:0.15rem 0.5rem;border-radius:6px;background:#6c63ff22;color:#a5a0ff">JSON 출력</span>
+          </div>
+        </div>
+        <div style="background:#0f0f1a;border-radius:10px;padding:0.8rem 1rem;font-size:0.72rem;font-family:monospace;color:var(--dim);line-height:1.7;overflow-x:auto">
+          <span style="color:#e599f7">역할:</span> 사주 정보 추출 전문가<br>
+          <span style="color:#a5a0ff">출력:</span> {"birth_date": "1984-07-25", "birth_time": "08:00", "gender": "남", "company_station": "구로디지털단지"}<br>
+          <span style="color:#ff6b6b">환각 방지:</span> 사용자가 말하지 않은 정보는 null로 반환. 절대 추측하지 말 것<br>
+          <span style="color:#00d2ff">변환 규칙:</span> "새벽4시" → 04:00 / "오후2시" → 14:00 / 역명은 그대로 보존
+        </div>
+        <div style="margin-top:0.5rem;font-size:0.68rem;color:var(--dim)">Temperature <strong style="color:#e599f7">0.3</strong> — 생년월일 한 글자 틀리면 사주가 완전히 달라지므로 정확도가 핵심. 시간 미상이면 null 반환</div>
+      </div>
+
+      <!-- 프롬프트 2: 지역 추천 -->
+      <div style="background:var(--card);border-radius:14px;padding:1.2rem 1.5rem;border:1px solid #6bcb7733">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem;flex-wrap:wrap;gap:0.5rem">
+          <div style="display:flex;align-items:center;gap:0.5rem">
+            <span style="font-size:1.3rem">🧭</span>
+            <span style="font-weight:700;font-size:0.95rem">지역 추천 프롬프트</span>
+          </div>
+          <div style="display:flex;gap:0.3rem;flex-wrap:wrap">
+            <span style="font-size:0.6rem;padding:0.15rem 0.5rem;border-radius:6px;background:#6bcb7722;color:#6bcb77">구체적 조건</span>
+            <span style="font-size:0.6rem;padding:0.15rem 0.5rem;border-radius:6px;background:#ffd93d22;color:#ffd93d">우선순위 형식</span>
+          </div>
+        </div>
+        <div style="background:#0f0f1a;border-radius:10px;padding:0.8rem 1rem;font-size:0.72rem;font-family:monospace;color:var(--dim);line-height:1.7;overflow-x:auto">
+          <span style="color:#6bcb77">입력:</span> 일간: 경금(庚金), 용신: 화(火), 길방: 남쪽, 직장역: 구로디지털단지<br>
+          <span style="color:#ffd93d">형식:</span> 정확히 3개 지역, 우선순위별 (1: 주길방 / 2: 보조길방 / 3: 세운보정)<br>
+          <span style="color:var(--dim)">제약:</span> 서울·경기 실제 구/시 이름만 사용. "동남쪽" 같은 추상적 표현 금지
+        </div>
+        <div style="margin-top:0.5rem;font-size:0.68rem;color:var(--dim)">Temperature <strong style="color:#6bcb77">0.3</strong> — 정확한 지역명 출력이 중요. JSON 파싱 실패 시 기본 지역 폴백 처리</div>
+      </div>
+
+      <!-- 프롬프트 3: 대화 관리 -->
+      <div style="background:var(--card);border-radius:14px;padding:1.2rem 1.5rem;border:1px solid #ff922b33">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.8rem;flex-wrap:wrap;gap:0.5rem">
+          <div style="display:flex;align-items:center;gap:0.5rem">
+            <span style="font-size:1.3rem">💬</span>
+            <span style="font-weight:700;font-size:0.95rem">대화 흐름 관리 프롬프트</span>
+          </div>
+          <div style="display:flex;gap:0.3rem;flex-wrap:wrap">
+            <span style="font-size:0.6rem;padding:0.15rem 0.5rem;border-radius:6px;background:#ff922b22;color:#ff922b">의도 분류</span>
+            <span style="font-size:0.6rem;padding:0.15rem 0.5rem;border-radius:6px;background:#6c63ff22;color:#a5a0ff">상태 기반</span>
+          </div>
+        </div>
+        <div style="background:#0f0f1a;border-radius:10px;padding:0.8rem 1rem;font-size:0.72rem;font-family:monospace;color:var(--dim);line-height:1.7;overflow-x:auto">
+          <span style="color:#ff922b">역할:</span> DAU 9만 부동산 플랫폼의 AI 상담사<br>
+          <span style="color:#a5a0ff">판단:</span> 사주 분석 완료 + 추천 지역 확정 + 사용자가 매물 원함 → action: "search"<br>
+          <span style="color:var(--dim)">분기:</span> search | ask_more | clarify | outside_region | no_results
+        </div>
+        <div style="margin-top:0.5rem;font-size:0.68rem;color:var(--dim)">Temperature <strong style="color:#ff922b">0.7</strong> — 대화체이므로 자연스러움이 중요. 의도 분류 + 응답 생성을 동시에 처리</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── 블록 5: 대화 기억 ── -->
+  <div class="reveal" style="margin:3rem 0">
+    <h3 style="text-align:center;margin-bottom:0.3rem;font-size:1.1rem">
+      <span style="color:var(--accent1)">대화 기억</span> — 사주 세션 관리
+      <span style="font-size:0.7rem;padding:0.15rem 0.5rem;border-radius:8px;background:#6c63ff22;color:#a5a0ff;margin-left:0.5rem;vertical-align:middle">Part 6 적용</span>
+    </h3>
+    <p style="text-align:center;color:var(--dim);font-size:0.85rem;margin-bottom:1.5rem">사주 분석 → 지역 추천 → 매물 탐색까지, 대화 맥락을 유지하는 방법</p>
+
+    <div style="max-width:750px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:1.2rem">
+      <!-- 대화 흐름 예시 -->
+      <div style="background:var(--card);border-radius:14px;padding:1.2rem;border:1px solid #6c63ff33">
+        <div style="font-size:0.75rem;color:var(--accent1);font-weight:700;margin-bottom:0.8rem">대화 흐름 예시</div>
+        <div style="display:grid;gap:0.5rem;font-size:0.75rem">
+          <div style="padding:0.4rem 0.7rem;background:#e599f711;border-radius:8px;border-left:3px solid #e599f7">
+            <div style="color:#e599f7;font-size:0.65rem">Turn 1 — 사주 입력</div>
+            <div>"84년 7월 25일 아침 8시 남자"</div>
+          </div>
+          <div style="padding:0.4rem 0.7rem;background:#6bcb7711;border-radius:8px;border-left:3px solid #6bcb77">
+            <div style="color:#6bcb77;font-size:0.65rem">Turn 2 — 분석 결과</div>
+            <div>"남쪽 방위의 금천구가 천생연분입니다"</div>
+          </div>
+          <div style="padding:0.4rem 0.7rem;background:#6c63ff11;border-radius:8px;border-left:3px solid var(--accent1)">
+            <div style="color:var(--dim);font-size:0.65rem">Turn 3 — 매물 요청</div>
+            <div>"금천구 매물 보여줘"</div>
+          </div>
+          <div style="padding:0.4rem 0.7rem;background:#ffd93d11;border-radius:8px;border-left:3px solid var(--accent4)">
+            <div style="color:var(--accent4);font-size:0.65rem">Turn 4 — 추가 탐색</div>
+            <div>"다른 동네도 볼래"</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 세션 저장 구조 -->
+      <div style="background:var(--card);border-radius:14px;padding:1.2rem;border:1px solid #2a2a4a">
+        <div style="font-size:0.75rem;color:var(--accent4);font-weight:700;margin-bottom:0.8rem">세션에 저장되는 것들</div>
+        <div style="display:grid;gap:0.6rem;font-size:0.75rem">
+          <div>
+            <div style="font-weight:700;color:var(--text)">🔮 사주 데이터</div>
+            <div style="color:var(--dim);font-size:0.7rem">四柱·용신·길방 — 세션 동안 캐시<br>한 번 계산하면 다시 안 함</div>
+          </div>
+          <div>
+            <div style="font-weight:700;color:var(--text)">📋 대화 히스토리</div>
+            <div style="color:var(--dim);font-size:0.7rem">최대 10턴 (FIFO) + 최근 20메시지<br>Part 6에서 배운 "슬라이딩 윈도우"</div>
+          </div>
+          <div>
+            <div style="font-weight:700;color:var(--text)">🏠 추천 매물 추적</div>
+            <div style="color:var(--dim);font-size:0.7rem">이미 본 매물 ID 기록<br>"다른 거 보여줘" 시 중복 제거</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div style="max-width:750px;margin:0.8rem auto 0;padding:0.8rem 1rem;background:#6c63ff08;border-radius:10px;border:1px solid #6c63ff22;font-size:0.75rem;color:var(--dim);text-align:center">
+      <strong style="color:var(--accent1)">왜 10턴 제한?</strong> — Part 6에서 배운 것처럼, 컨텍스트 윈도우는 유한합니다. 사주 데이터 + 매물 정보 + 프롬프트 + 대화 히스토리가 모두 들어가야 하므로 대화 기억은 최근 10턴으로 제한합니다.
+    </div>
+  </div>
+
+  <!-- ── 블록 6: Temperature 설정 ── -->
+  <div class="reveal" style="margin:3rem 0">
+    <h3 style="text-align:center;margin-bottom:0.3rem;font-size:1.1rem">
+      <span style="color:var(--accent3)">Temperature 설정</span> — 작업별 창의성 조절
+      <span style="font-size:0.7rem;padding:0.15rem 0.5rem;border-radius:8px;background:#ff6b6b22;color:#ff6b6b;margin-left:0.5rem;vertical-align:middle">Part 5 적용</span>
+    </h3>
+    <p style="text-align:center;color:var(--dim);font-size:0.85rem;margin-bottom:1.5rem">같은 서비스 안에서도 작업마다 Temperature가 다릅니다</p>
+
+    <div style="max-width:700px;margin:0 auto">
+      <!-- Temperature 바 -->
+      <div style="background:var(--card);border-radius:16px;padding:1.5rem;border:1px solid #2a2a4a">
+        <!-- 스케일 바 -->
+        <div style="position:relative;height:32px;background:linear-gradient(to right,#00d2ff33,#ffd93d33,#ff6b6b33);border-radius:16px;margin-bottom:1.5rem;overflow:visible">
+          <div style="position:absolute;left:0;top:50%;transform:translateY(-50%);font-size:0.65rem;color:#00d2ff;padding-left:0.8rem;font-weight:700">정확 0.0</div>
+          <div style="position:absolute;right:0;top:50%;transform:translateY(-50%);font-size:0.65rem;color:#ff6b6b;padding-right:0.8rem;font-weight:700">창의 1.0</div>
+          <!-- 마커: 사주 추출 0.3 -->
+          <div style="position:absolute;left:30%;top:-8px;transform:translateX(-50%);text-align:center">
+            <div style="width:4px;height:48px;background:#e599f7;border-radius:2px;margin:0 auto"></div>
+          </div>
+          <!-- 마커: 추천 문구 0.5 -->
+          <div style="position:absolute;left:50%;top:-8px;transform:translateX(-50%);text-align:center">
+            <div style="width:4px;height:48px;background:#ffd93d;border-radius:2px;margin:0 auto"></div>
+          </div>
+          <!-- 마커: 대화 관리 0.7 -->
+          <div style="position:absolute;left:70%;top:-8px;transform:translateX(-50%);text-align:center">
+            <div style="width:4px;height:48px;background:#ff922b;border-radius:2px;margin:0 auto"></div>
+          </div>
+        </div>
+
+        <!-- 레이블 -->
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.8rem;font-size:0.78rem">
+          <div style="text-align:center;padding:0.8rem;background:#e599f708;border-radius:10px;border:1px solid #e599f722">
+            <div style="font-size:1.2rem;margin-bottom:0.3rem">🔮</div>
+            <div style="font-weight:700;color:#e599f7;margin-bottom:0.2rem">사주 정보 추출</div>
+            <div style="font-size:1.1rem;font-weight:900;color:#e599f7">0.3</div>
+            <div style="font-size:0.65rem;color:var(--dim);margin-top:0.2rem">정확도 최우선<br>생년월일 오류 = 사주 전체 오류</div>
+          </div>
+          <div style="text-align:center;padding:0.8rem;background:#ffd93d08;border-radius:10px;border:1px solid #ffd93d22">
+            <div style="font-size:1.2rem;margin-bottom:0.3rem">📝</div>
+            <div style="font-weight:700;color:#ffd93d;margin-bottom:0.2rem">추천 문구 생성</div>
+            <div style="font-size:1.1rem;font-weight:900;color:#ffd93d">0.5</div>
+            <div style="font-size:0.65rem;color:var(--dim);margin-top:0.2rem">자연스러움 + 정확성<br>사주 해석을 읽기 쉽게</div>
+          </div>
+          <div style="text-align:center;padding:0.8rem;background:#ff922b08;border-radius:10px;border:1px solid #ff922b22">
+            <div style="font-size:1.2rem;margin-bottom:0.3rem">💬</div>
+            <div style="font-weight:700;color:#ff922b;margin-bottom:0.2rem">대화 관리</div>
+            <div style="font-size:1.1rem;font-weight:900;color:#ff922b">0.7</div>
+            <div style="font-size:0.65rem;color:var(--dim);margin-top:0.2rem">대화체 자연스러움<br>의도 파악 + 응답 생성</div>
+          </div>
+        </div>
+      </div>
+
+      <div style="margin-top:0.8rem;padding:0.8rem 1rem;background:#ff6b6b08;border-radius:10px;border:1px solid #ff6b6b22;font-size:0.75rem;color:var(--dim);text-align:center">
+        <strong style="color:var(--accent3)">핵심 원칙:</strong> 데이터 추출(0.3)은 낮게, 분석 설명(0.5)은 중간, 대화(0.7)는 자연스럽게. Part 5에서 배운 Temperature가 실전에서 이렇게 쓰입니다.
+      </div>
+    </div>
+  </div>
+
+  <!-- 마무리 인사이트 -->
+  <div class="reveal" style="max-width:700px;margin:2rem auto 0;padding:1.5rem 2rem;background:var(--card);border-radius:16px;border:1px solid #e599f733;text-align:center">
+    <div style="font-size:1.5rem;margin-bottom:0.5rem">💡</div>
+    <div style="font-size:0.95rem;font-weight:700;color:var(--accent4);margin-bottom:0.5rem">이론에서 실전으로</div>
+    <div style="font-size:0.82rem;color:var(--dim);line-height:1.8">
+      임베딩(Part 2)으로 매물을 벡터화하고, Attention(Part 3)으로 맥락을 파악하고,<br>
+      텍스트 생성(Part 5)으로 추천 문구를 쓰고, 컨텍스트 윈도우(Part 6)로 대화를 기억하고,<br>
+      프롬프트 엔지니어링(Part 7)으로 정확한 결과를 이끌어냅니다.<br>
+      <span style="color:var(--accent4)">LLM의 원리를 이해하면 — 사주와 부동산도 연결할 수 있습니다.</span>
+    </div>
+  </div>
+
+</div>
+
+<div class="divider"></div>
+
 <!-- ═══ 마무리 ═══ -->
 <div class="section" id="final">
   <div class="section-header">
@@ -7635,7 +8076,7 @@
 
 <script>
 // ── 진행률 바 & 네비게이션 ──
-const sections = ['hero','part1','part2','part3','part4','part5','part6','part7','final'];
+const sections = ['hero','part1','part2','part3','part4','part5','part6','part7','case-study','final'];
 function updateProgress() {
   const h = document.documentElement.scrollHeight - window.innerHeight;
   const p = (window.scrollY / h) * 100;
