@@ -3,16 +3,62 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>LLM은 어떻게 작동하는가? — 시각화 가이드</title>
-<meta name="description" content="비개발자도 이해할 수 있는 대규모 언어 모델(LLM)의 작동 원리. 토큰화, 임베딩, Attention, 트랜스포머를 인터랙티브 시각화로 배워보세요.">
-<meta property="og:title" content="LLM은 어떻게 작동하는가? — 시각화 가이드">
-<meta property="og:description" content="비개발자도 이해할 수 있는 LLM 작동 원리. 토큰화, Attention, 트랜스포머를 인터랙티브 시각화로 배워보세요.">
-<meta property="og:type" content="website">
+<title>LLM은 어떻게 작동하는가? — 인터랙티브 시각화 가이드 | ChatGPT·Claude 원리</title>
+<meta name="description" content="비개발자도 30분 만에 이해하는 LLM 작동 원리. 토큰화, 임베딩, Attention, 트랜스포머, 환각까지 — 인터랙티브 시각화로 배우는 ChatGPT·Claude의 내부 구조.">
+<meta name="keywords" content="LLM, 대규모 언어 모델, ChatGPT 원리, Claude 원리, Gemini, 트랜스포머, Transformer, Attention, 토큰화, 임베딩, GPT, AI 작동 원리, 인공지능 시각화, 머신러닝 입문, 딥러닝 쉽게, 프롬프트 엔지니어링, RAG, 파인튜닝, 환각, hallucination">
+<meta name="author" content="LLM Visual Guide">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://llm-visual-guide.vercel.app/">
+
+<!-- Open Graph -->
+<meta property="og:title" content="LLM은 어떻게 작동하는가? — 인터랙티브 시각화 가이드">
+<meta property="og:description" content="비개발자도 30분 만에 이해하는 LLM 작동 원리. 토큰화, Attention, 트랜스포머를 인터랙티브 시각화로 배우는 ChatGPT·Claude 내부 구조 가이드.">
+<meta property="og:type" content="article">
 <meta property="og:locale" content="ko_KR">
+<meta property="og:url" content="https://llm-visual-guide.vercel.app/">
+<meta property="og:site_name" content="LLM 시각화 가이드">
+<meta property="article:published_time" content="2025-01-01T00:00:00+09:00">
+<meta property="article:modified_time" content="2026-03-16T00:00:00+09:00">
+<meta property="article:section" content="AI Education">
+<meta property="article:tag" content="LLM">
+<meta property="article:tag" content="ChatGPT">
+<meta property="article:tag" content="Transformer">
+<meta property="article:tag" content="AI 교육">
+
+<!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="LLM은 어떻게 작동하는가? — 시각화 가이드">
-<meta name="twitter:description" content="비개발자도 이해할 수 있는 LLM 작동 원리 시각화 가이드">
+<meta name="twitter:description" content="비개발자도 30분 만에 이해하는 LLM 작동 원리 인터랙티브 시각화 가이드">
+
+<!-- JSON-LD Structured Data -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "LLM은 어떻게 작동하는가? — 인터랙티브 시각화 가이드",
+  "description": "비개발자도 30분 만에 이해하는 대규모 언어 모델(LLM)의 작동 원리. 토큰화, 임베딩, Attention, 트랜스포머, 환각까지 인터랙티브 시각화로 설명.",
+  "inLanguage": "ko",
+  "datePublished": "2025-01-01",
+  "dateModified": "2026-03-16",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://llm-visual-guide.vercel.app/"
+  },
+  "articleSection": "AI Education",
+  "keywords": ["LLM", "ChatGPT", "Claude", "Transformer", "Attention", "토큰화", "임베딩", "인공지능", "머신러닝"],
+  "about": [
+    {"@type": "Thing", "name": "Large Language Model"},
+    {"@type": "Thing", "name": "Transformer Architecture"},
+    {"@type": "Thing", "name": "Attention Mechanism"}
+  ],
+  "learningResourceType": "Interactive Visual Guide",
+  "educationalLevel": "Beginner",
+  "timeRequired": "PT30M"
+}
+</script>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧠</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
   * { margin: 0; padding: 0; box-sizing: border-box; }
