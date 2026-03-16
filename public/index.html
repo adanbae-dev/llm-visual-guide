@@ -2138,8 +2138,38 @@
   </p>
   <p style="text-align:center;color:var(--accent4);font-size:0.85rem;margin-bottom:0.5rem">👆 아래 지도에서 단어를 클릭해서 거리를 비교해 보세요</p>
 
-  <!-- 임베딩 연산 -->
-  <div class="reveal" style="max-width:700px;margin:1rem auto 1.5rem;padding:1.5rem 2rem;background:var(--card);border-radius:16px;border:1px solid #6c63ff33">
+  <div class="embed-space reveal" id="embedSpace">
+    <div class="embed-dot cat-city" style="top:18%;left:15%" data-name="서울" data-x="15" data-y="18">🏙️ 서울</div>
+    <div class="embed-dot cat-city" style="top:25%;left:28%" data-name="부산" data-x="28" data-y="25">🏙️ 부산</div>
+    <div class="embed-dot cat-city" style="top:12%;left:38%" data-name="도쿄" data-x="38" data-y="12">🏙️ 도쿄</div>
+    <div class="embed-dot cat-city" style="top:8%;left:52%" data-name="파리" data-x="52" data-y="8">🏙️ 파리</div>
+    <div class="embed-dot cat-food" style="top:65%;left:55%" data-name="피자" data-x="55" data-y="65">🍕 피자</div>
+    <div class="embed-dot cat-food" style="top:72%;left:68%" data-name="스시" data-x="68" data-y="72">🍣 스시</div>
+    <div class="embed-dot cat-food" style="top:60%;left:72%" data-name="라멘" data-x="72" data-y="60">🍜 라멘</div>
+    <div class="embed-dot cat-food" style="top:75%;left:82%" data-name="김치찌개" data-x="82" data-y="75">🥘 김치찌개</div>
+    <div class="embed-dot cat-animal" style="top:45%;left:10%" data-name="고양이" data-x="10" data-y="45">🐱 고양이</div>
+    <div class="embed-dot cat-animal" style="top:55%;left:20%" data-name="강아지" data-x="20" data-y="55">🐶 강아지</div>
+    <div class="embed-dot cat-animal" style="top:50%;left:30%" data-name="토끼" data-x="30" data-y="50">🐰 토끼</div>
+    <div class="embed-dot cat-nature" style="top:35%;left:72%" data-name="바다" data-x="72" data-y="35">🌊 바다</div>
+    <div class="embed-dot cat-nature" style="top:30%;left:85%" data-name="산" data-x="85" data-y="30">⛰️ 산</div>
+    <div class="embed-dot cat-nature" style="top:42%;left:80%" data-name="숲" data-x="80" data-y="42">🌲 숲</div>
+    <div class="embed-label" style="top:3%;left:22%;color:#a5a0ff">도시 영역</div>
+    <div class="embed-label" style="top:82%;left:62%;color:#ff922b">음식 영역</div>
+    <div class="embed-label" style="top:38%;left:1%;color:#6bcb77">동물 영역</div>
+    <div class="embed-label" style="top:22%;left:73%;color:#e599f7">자연 영역</div>
+    <svg class="embed-distance-line" id="embedSvg" style="width:100%;height:100%;top:0;left:0"></svg>
+    <div class="embed-info" id="embedInfo">단어를 클릭하면 다른 단어와의 거리를 볼 수 있습니다</div>
+  </div>
+
+  <div class="try-it reveal">
+    <span style="font-size:1.2rem">🔗</span>
+    <span>실제 임베딩 공간을 3D로 탐색해 보세요 →
+      <a href="https://projector.tensorflow.org/" target="_blank">TensorFlow Embedding Projector</a>
+    </span>
+  </div>
+
+  <!-- 임베딩 연산 — 지도 아래에서 "의미로 계산이 된다" 발견 -->
+  <div class="reveal" style="max-width:700px;margin:1.5rem auto;padding:1.5rem 2rem;background:var(--card);border-radius:16px;border:1px solid #6c63ff33">
     <h3 style="text-align:center;font-size:1rem;color:var(--accent1);margin-bottom:1rem">✨ 놀라운 발견: 의미로 "계산"이 된다!</h3>
     <div style="display:flex;align-items:center;justify-content:center;gap:0.5rem;flex-wrap:wrap;font-size:1.1rem;font-weight:700;margin-bottom:1rem">
       <span style="background:#6c63ff33;padding:0.4rem 0.8rem;border-radius:10px;color:#a5a0ff">👑 왕</span>
@@ -2172,7 +2202,7 @@
     <summary>심화: 실제 임베딩은 어떤 모습일까? <span class="deep-badge">펼쳐보기</span></summary>
     <div class="deep-content">
       <p style="font-size:0.85rem;color:var(--dim)">
-        아래 지도는 2D(가로·세로)로 단순화한 것이지만, 실제로는 수백~수천 개의 숫자로 표현된다.
+        위 지도는 2D(가로·세로)로 단순화한 것이지만, 실제로는 수백~수천 개의 숫자로 표현된다.
         예를 들어 GPT-3는 12,288개, Claude는 비공개지만 유사한 규모의 숫자를 사용한다.
         <strong style="color:var(--text)">"방향이 비슷하면 의미도 비슷하다"</strong>는 원리로 단어 간 유사도를 측정한다.
       </p>
@@ -2185,36 +2215,6 @@
       </div>
     </div>
   </details>
-
-  <div class="embed-space reveal" id="embedSpace">
-    <div class="embed-dot cat-city" style="top:18%;left:15%" data-name="서울" data-x="15" data-y="18">🏙️ 서울</div>
-    <div class="embed-dot cat-city" style="top:25%;left:28%" data-name="부산" data-x="28" data-y="25">🏙️ 부산</div>
-    <div class="embed-dot cat-city" style="top:12%;left:38%" data-name="도쿄" data-x="38" data-y="12">🏙️ 도쿄</div>
-    <div class="embed-dot cat-city" style="top:8%;left:52%" data-name="파리" data-x="52" data-y="8">🏙️ 파리</div>
-    <div class="embed-dot cat-food" style="top:65%;left:55%" data-name="피자" data-x="55" data-y="65">🍕 피자</div>
-    <div class="embed-dot cat-food" style="top:72%;left:68%" data-name="스시" data-x="68" data-y="72">🍣 스시</div>
-    <div class="embed-dot cat-food" style="top:60%;left:72%" data-name="라멘" data-x="72" data-y="60">🍜 라멘</div>
-    <div class="embed-dot cat-food" style="top:75%;left:82%" data-name="김치찌개" data-x="82" data-y="75">🥘 김치찌개</div>
-    <div class="embed-dot cat-animal" style="top:45%;left:10%" data-name="고양이" data-x="10" data-y="45">🐱 고양이</div>
-    <div class="embed-dot cat-animal" style="top:55%;left:20%" data-name="강아지" data-x="20" data-y="55">🐶 강아지</div>
-    <div class="embed-dot cat-animal" style="top:50%;left:30%" data-name="토끼" data-x="30" data-y="50">🐰 토끼</div>
-    <div class="embed-dot cat-nature" style="top:35%;left:72%" data-name="바다" data-x="72" data-y="35">🌊 바다</div>
-    <div class="embed-dot cat-nature" style="top:30%;left:85%" data-name="산" data-x="85" data-y="30">⛰️ 산</div>
-    <div class="embed-dot cat-nature" style="top:42%;left:80%" data-name="숲" data-x="80" data-y="42">🌲 숲</div>
-    <div class="embed-label" style="top:3%;left:22%;color:#a5a0ff">도시 영역</div>
-    <div class="embed-label" style="top:82%;left:62%;color:#ff922b">음식 영역</div>
-    <div class="embed-label" style="top:38%;left:1%;color:#6bcb77">동물 영역</div>
-    <div class="embed-label" style="top:22%;left:73%;color:#e599f7">자연 영역</div>
-    <svg class="embed-distance-line" id="embedSvg" style="width:100%;height:100%;top:0;left:0"></svg>
-    <div class="embed-info" id="embedInfo">단어를 클릭하면 다른 단어와의 거리를 볼 수 있습니다</div>
-  </div>
-
-  <div class="try-it reveal">
-    <span style="font-size:1.2rem">🔗</span>
-    <span>실제 임베딩 공간을 3D로 탐색해 보세요 →
-      <a href="https://projector.tensorflow.org/" target="_blank">TensorFlow Embedding Projector</a>
-    </span>
-  </div>
 
   <!-- 전체 파이프라인 정리 — 토큰화+임베딩을 모두 배운 뒤 한눈에 정리 -->
   <div class="reveal" style="max-width:650px;margin:2rem auto;padding:1.5rem;background:var(--card);border-radius:16px;border:1px solid #00d2ff33">
